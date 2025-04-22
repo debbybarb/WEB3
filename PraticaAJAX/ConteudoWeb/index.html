@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Dados com AJAX</title>
+    <script>
+        function buscarDados() {
+            document.getElementById("resultado").innerHTML = "Carregando dados (aguarde 30 segundos)...";
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/PraticaAJAX/dados", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var dados = JSON.parse(xhr.responseText);
+                    document.getElementById("resultado").innerHTML =
+                    "<p><strong>Nome:</strong>" + dados.nome + "</p>" +
+                    "<p><strong>CPF:</strong>" + dados.cpf + "</p>" +
+                    "<p><strong>Matrícula:</strong>" + dados.matricula + "</p>";
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+<h2>Consulta de Dados</h2>
+<button onclick="buscarDados()">Buscar meus dados</button>
+<div id="resultado" style="margin-top: 20px"></div>
+</body>
+</html>
