@@ -1,0 +1,1 @@
+Olá! Conteúdo carregado com AJAX por um arquivo txt!
