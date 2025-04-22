@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Requisição Síncrona</title>
+</head>
+<body>
+<h1>AJAX Síncrono com Servlet</h1>
+<button onclick="fazerRequisicao()">Fazer Requisição</button>
+<p id="resultado"></p>
+
+<script>
+    function fazerRequisicao() {
+        const xhr = new XMLHttpRequest();
+        const url = 'http://localhost:8080/PraticaAJAX2/demora';
+
+        const inicio = performance.now();
+
+        xhr.open('GET', url, false); // Síncrona
+        xhr.send();
+
+        const fim = performance.now();
+
+        document.getElementById("resultado").innerText =
+            `Resposta: ${xhr.responseText}\nTempo de espera: ${(fim - inicio).toFixed(2)} ms`;
+    }
+</script>
+</body>
+</html>
