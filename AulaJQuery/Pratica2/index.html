@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("button").click(function(){
+                    $("#minha_div").load("novo_texto.txt #meu_h2", function(textoResposta, status, xhr){
+                        if(status=="success")
+                          alert("Deu certo, texto recebido!");
+                        if(status=="error") 
+                          alert("Error:" +xhr.status + ":" + xhr.statusText);
+                    });
+                });
+            });
+        </script>
+        <script>
+            $("button").click(function(){
+                $get("teste.php", function(data,status){
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            });
+        </script>
+        <script>
+            $("button").click(function(){
+                $.post("teste2.php",
+                    {
+                        nome: "Capivara",
+                        cidade: "Seropédica"
+                    },
+                    function(data, status){
+                        alert("Data: " + data +"\nStatus: " + status);
+                    }
+                )
+            });
+        </script>
+    </head>
+    <body>
+        <div id="minha_div">Texto que será alternado</div>
+        <button>Pegar conteúdo no Servidor</button>
+    </body>
+</html>
